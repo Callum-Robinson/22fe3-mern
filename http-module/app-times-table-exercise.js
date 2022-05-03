@@ -18,8 +18,8 @@ const notFound = (request, response) => {
 
 const table = (request, response) => {
     const url = URL.parse(request.url, true);
-    const table = url.query.table || 1;
-    const range = url.query.range || 12;
+    const table = url.query.table || 1; // defaults to 1 times table
+    const range = url.query.range || 12; // default to range of 12
 
     response.statusCode = 200; 
     
@@ -42,7 +42,7 @@ const table = (request, response) => {
     }
     response.write(`</ul`);
 
-    response.end();
+    response.end(); // return the response.
 }
 
 const requestHandler = (request, response) => {
