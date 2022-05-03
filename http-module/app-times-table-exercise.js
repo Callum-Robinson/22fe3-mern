@@ -35,7 +35,7 @@ const table = (request, response) => {
 
     response.write(`<p>${table} times table (up to ${range})</p>`)
     response.write(`<ul>`);
-    for (let i = 1; i - 1 < range; i++) {
+    for (let i = 1; i <= range; i++) {
         let y = table * i;
         response.write(`<li>${table} * ${i} = ${y}</li>`)
     }
