@@ -32,6 +32,7 @@ const table = (request, response) => {
     // - 12 * 1 = 12
     // - 12 * 2 = 24
     // etc...
+    response.setHeader('Content-type', 'text/html');
 
     response.write(`<p>${table} times table (up to ${range})</p>`)
     response.write(`<ul>`);
