@@ -18,14 +18,19 @@ const serve = (request, response, file) => {
       });
 }
 
+// newer way of getting the body data than shown in app-request-body-data.js
+// - the async keyword states that this function may not return a value straight away
 const getBody = async (request, response) => {
+    // each buffer in buffers represents a chunk of data in the request body
     const buffers = [];
 
+    // iterate over that data, wait for it if necessary
+    // - await does the waiting (asynchronously)
     for await (const chunk of request) {
         buffers.push(chunk);
     }
-    const data = Buffer.concat(buffers).toString();
-    return (JSON.parse(data));
+    const data = Buffer.concat(buffers).toString(); // transform the buffers into a JSON string
+    return (JSON.parse(data)); // return the JSON string as a JS object
 }
 
 const notFound = (request, response) => {
@@ -54,6 +59,9 @@ const handleGet = (request, response, url) => {
 const handlePost = async (request, response, url) => {
     switch (url.pathname) {
         case "/":
+            // we must use await otherwise this method will complete
+            // before the promise in getBody() resolves, thus the response will be undefined
+            // - when we use await inside a function, we must label the function as async
             const body = await getBody(request, response);
             console.log(body);
             response.setHeader('Content-type', 'application/json');
