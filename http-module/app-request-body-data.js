@@ -20,10 +20,14 @@ const serve = (request, response, file) => {
 
 const returnBodyData = (request, response) => {
     let data = '';
+
+    // request.on() accepts an event and a callback function to bind to that event
     request.on('data', chunk => {
-        data += chunk;
+        // the data event means their is data in the requests body
+        data += chunk; // builds up a JSON string from the request body
     })
     request.on('end', () => {
+        // the end event signifies the body has finished being read
         console.log(JSON.parse(data));
         response.setHeader('Content-type', 'application/json');
         response.end(data);
