@@ -1,6 +1,8 @@
 // entry point of app when it starts
 // Import the express module
 const express = require('express');
+const User = require('./my_js_modules/user');
+const helper = require('./my_js_modules/helper');
 
 // If a port wasn't specified as an environment variable, it will default to
 // port 3000.
@@ -49,6 +51,25 @@ app.get("/path/:city", (request, response) => {
     }
     return response.status(400).contentType('html').send(`Bad request, country must be specified`);
 });
+
+// /table/4?range=10
+app.get("/table/:table", (request, response) => {
+    const table = request.params.table || 1; // get the table path variable (:table) or default to 1
+    const range = request.query.range || 12; // get the range query parameter (?range=) or default to 12
+
+    let data = `<h1>${table} times table</h1>\n`; // data string to hold the HTML
+    for (let i = 1; i <= range; i++) {
+        data += `<li>${i} x ${table} = ${i * table}</li>\n`;
+    }
+    response.status(200) // set the response code
+            .contentType('html') // set the content type header
+            .send(data); // send the data variables value in the response body
+});
+
+app.get("/user", (request, response) => {
+    response.json(new User("Bob", helper.SEED));
+});
+
 
 // start the server
 // app.listen(port, callbackfn)
