@@ -28,4 +28,14 @@ router.post('/', (req, res) => {
     res.status(200).json(user);
 });
 
+// 2. Create and implement a delete by id route
+router.delete('/:id', (req, res) => {
+    // implementation here
+});
+
+// 3. Create and implement an update route
+router.put('/:id', (req, res) => {
+    // implementation here
+});
+
 module.exports = router;
