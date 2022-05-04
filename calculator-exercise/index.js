@@ -11,6 +11,9 @@ app.get("/add/:a/:b", (request, response) => {
     const a = Number(request.params.a);
     const b = Number(request.params.b);
 
+    if (!a || !b) {
+        return response.status(400).send(`Bad request, two numbers needed`);
+    }
     let result = calculator.add(a, b);
 
     const output = {
@@ -28,6 +31,9 @@ app.get("/subtract/:a/:b", (request, response) => {
     const a = Number(request.params.a);
     const b = Number(request.params.b);
 
+    if (!a || !b) {
+        return response.status(400).send(`Bad request, two numbers needed`);
+    }
     let result = calculator.subtract(a, b);
 
     const output = {
@@ -45,6 +51,9 @@ app.get("/multiply/:a/:b", (request, response) => {
     const a = Number(request.params.a);
     const b = Number(request.params.b);
 
+    if (!a || !b) {
+        return response.status(400).send(`Bad request, two numbers needed`);
+    }
     let result = calculator.multiply(a, b);
 
     const output = {
@@ -62,6 +71,9 @@ app.get("/divide/:a/:b", (request, response) => {
     const a = Number(request.params.a);
     const b = Number(request.params.b);
 
+    if (!a || !b) {
+        return response.status(400).send(`Bad request, two numbers needed`);
+    }
     let result = calculator.divide(a, b);
 
     const output = {
@@ -78,6 +90,9 @@ app.get("/divide/:a/:b", (request, response) => {
 app.get("/oddoreven/:a", (request, response) => {
     const a = Number(request.params.a);
 
+    if (!a) {
+        return response.status(400).send(`Bad request, a number needed`);
+    }
     let result = calculator.oddOrEven(a);
 
     const output = {
@@ -93,6 +108,9 @@ app.get("/oddoreven/:a", (request, response) => {
 app.get("/factorial/:a", (request, response) => {
     const a = Number(request.params.a);
 
+    if (!a) {
+        return response.status(400).send(`Bad request, a number needed`);
+    }
     let result = calculator.factorial(a);
 
     const output = {
@@ -108,6 +126,9 @@ app.get("/factorial/:a", (request, response) => {
 app.get("/prime/:a", (request, response) => {
     const a = Number(request.params.a);
 
+    if (!a) {
+        return response.status(400).send(`Bad request, a number needed`);
+    }
     let result = calculator.prime(a);
 
     const output = {
