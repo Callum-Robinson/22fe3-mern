@@ -68,6 +68,9 @@ app.get("/table", (request, response) => {
             .send(data);
 });
 
+app.get("/user", (request, response) => {
+    response.json(new User("Bob", helper.SEED));
+});
 
 
 // start the server
