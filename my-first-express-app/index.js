@@ -50,6 +50,24 @@ app.get("/path/:city", (request, response) => {
     return response.status(400).contentType('html').send(`Bad request, country must be specified`);
 });
 
+
+// Exercise: Recreate the times table exercise from earlier, 
+//           but using Express instead of the Node.js HTTP module
+app.get("/table", (request, response) => {
+    const table = request.query.table || 1;
+    const range = request.query.range || 10;
+
+    let data = `<h1>${table} times table</h1>\n`;
+    for (let i = 1; i <= range; i++) {
+        data += `<li>${table} x ${i} = ${table * i}</li>\n`;
+    }
+    response.status(200)
+            .contentType('html')
+            .send(data);
+});
+
+
+
 // start the server
 // app.listen(port, callbackfn)
 const server = app.listen(port, () => {
