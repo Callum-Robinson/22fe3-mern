@@ -12,7 +12,7 @@ const app = express();
 // express.json() middleware uses the body-parser dependency (included in Express) to parse JSON request bodies
 // into request.body
 app.use(express.json());
-//app.use(express.urlencoded({ extended: false })); // allows parsing form data/url encoded data into the body
+app.use(express.urlencoded({ extended: true })); // allows parsing form data/url encoded data into the body
 app.use(express.static("public")); // serves files from the public directory 
 
 app.use("/user", userRouter);
