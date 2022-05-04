@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+let idCounter = 3;
 const users = [{"id": 1, "name": "fred123"}, {"id": 2, "name": "fred234"}];
 
 router.get('/', (req, res) => {
@@ -18,10 +19,13 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log(req.body);
     const user = req.body;
-    console.log(user);
-    res.json(user);
-})
+    req.body.username
+    user.id = idCounter++;
+
+    users.push(user);
+
+    res.status(200).json(user);
+});
 
 module.exports = router;
