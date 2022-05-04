@@ -1,6 +1,8 @@
 // entry point of app when it starts
 // Import the express module
 const express = require('express');
+const User = require('./my_js_modules/user');
+const helper = require('./my_js_modules/helper');
 
 // If a port wasn't specified as an environment variable, it will default to
 // port 3000.
