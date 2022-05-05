@@ -28,6 +28,8 @@ router.post('/', (req, res) => {
     res.status(200).json(user);
 });
 
+// TIP: You are dealing with objects, they don't need to be readded to the array
+
 // 2. Create and implement a delete by id route
 router.delete('/:id', (req, res) => {
     const id = req.params.id;

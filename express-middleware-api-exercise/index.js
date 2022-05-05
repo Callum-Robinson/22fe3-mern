@@ -5,6 +5,14 @@ const morgan = require('morgan');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+if (process.env.NODE_ENV === "PRODUCTION") {
+    console.log("=== PRODUCTION ===");
+    app.use(morgan('combined'));
+} else {
+    console.log("=== DEVELOPMENT ===");
+    app.use(morgan('dev'));
+}
+
 // 1. Add a request logger to the beginning of the middleware chain
 //    - create a function which accepts (request, response, next) and logs info, then calls next()
 //    - apply the middleware with app.use()
