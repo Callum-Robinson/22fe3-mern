@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = require('./routes/user-router');
+const morgan = require('morgan');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -12,6 +13,7 @@ function requestLogger(request, response, next) {
     next();
 }
 app.use(requestLogger);
+app.use(morgan('combined'));
 
 // middleware
 // express.json() middleware uses the body-parser dependency (included in Express) to parse JSON request bodies
