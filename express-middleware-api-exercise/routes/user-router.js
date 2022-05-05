@@ -32,12 +32,27 @@ router.post('/', (req, res) => {
 
 // 2. Create and implement a delete by id route
 router.delete('/:id', (req, res) => {
-    // implementation here
+    const id = req.params.id;
+    if (user) {
+        const index = users.findIndex(user => user.id == id);
+        users.splice(index, 1);
+        res.status(200).json(user);
+        return; // stops the function from trying to execute the next res.status(404)
+    }
+    res.status(404).send(`User with id ${id} not found.`);
 });
 
 // 3. Create and implement an update route
 router.put('/:id', (req, res) => {
-    // implementation here
+    const id = req.params.id;
+    const updates = req.params.body;
+    const user = users.find(user => user.id == id);
+    if (user) {
+        user.username == updates.username;
+        res.status(200).json(user);
+        return; // stops the function from trying to execute the next res.status(404)
+    }
+    res.status(404).send(`User with id ${id} not found.`);
 });
 
 module.exports = router;
