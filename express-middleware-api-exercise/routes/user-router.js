@@ -40,16 +40,17 @@ router.delete('/:id', (req, res) => {
     res.status(404).send(`User with id ${id} not found.`);
 });
 
-// 3. Create and implement an update route
+// 3. Create and implement an update route (changed to different method)
 router.put('/:id', (req, res) => {
     const id = req.params.id;
     const oldUser = users.find(user => user.id == id);
     const updatedUser = req.body;
-    updatedUser.id = id;
+    // updatedUser.id = id;
 
     if (oldUser) {
-        users.splice((id - 1), 1, updatedUser);
-        res.status(200).json(updatedUser);
+        // users.splice((id - 1), 1, updatedUser);
+        users[id - 1].name = updatedUser.name;
+        res.status(200).json(users[id - 1]);
         return;
     }
     res.status(404).send(`User with id ${id} not found.`);
