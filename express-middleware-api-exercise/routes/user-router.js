@@ -33,7 +33,7 @@ router.delete('/:id', (req, res) => {
     const id = req.params.id;
     const user = users.find(user => user.id == id);
     if (user) {
-        users.splice((id - 1), 1);
+        users.splice(users.indexOf(user), 1);
         res.status(200).json(user);
         return;
     }
