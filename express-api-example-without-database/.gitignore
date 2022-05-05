@@ -1,0 +1,3 @@
+NODE_MODULES/
+# Usually env files are ignored
+#*.env
