@@ -19,7 +19,7 @@ module.exports = {
     generateHash: (char, seed) => {
         return 31 * 7 * ((seed || SEED) * char);
     },
-    
+
     print: (input) => {
         console.log(input);
     }

@@ -38,6 +38,29 @@ app.get("/other", function(request, response, next) {
     response.send("other");
 });
 
+// ERROR HANDLING MIDDLEWARE //
+// accepts 4 parameters, (error, request, response, next) or 3 if sending the response (error, request, response)
+// - we can call error handling middleware by passing an error to next(error) or by throwing an error (express will automatically call next(error))
+function errorLogger(error, request, response, next) {
+    console.log("ERROR OCCURED");
+    next(error);
+}
+
+function errorResponse(error, request, response, next) {
+    // the next parameter is always required, this is because of Express' built-in middleware for error handling,
+    // the default error handler
+    response.status(400).send("Bad request!");
+}
+
+app.get("/throws", (request, response, next) => {
+    throw new Error("Something went wrong");
+    // let error = new Error("Something went wrong");
+    // next(error);
+});
+
+app.use(errorLogger);
+app.use(errorResponse);
+
 const server = app.listen(PORT, function() {
     console.log(`Server up on ${PORT}`);
 });
