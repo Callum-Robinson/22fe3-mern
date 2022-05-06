@@ -33,6 +33,8 @@ app.use((error, request, response, next) => {
     if (!(error instanceof HttpError)) {
         if (error instanceof UserNotFoundError) {
             error = new HttpError(error, 404);
+        } else if (error.name === "ValidationError") {
+            error = new HttpError(error, 400);
         } else {
             // unknown error
             error = new HttpError(new Error("Something went wrong..."), 500);
