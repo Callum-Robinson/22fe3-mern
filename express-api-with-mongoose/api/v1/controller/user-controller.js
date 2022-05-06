@@ -26,13 +26,14 @@ module.exports = {
     },
 
     create: async (req, res, next) => {
-        const user = new User({ username: req.body.username });
-        await user.save(err => {
-            // if the save operation was unsuccessful, the err object will be truthy
-            if (err) return next(err);
-            console.log("User saved successfully");
-        })
-        res.status(200).json(user);
+        const user = new User(req.body);
+
+        try {
+            await user.save();
+            res.status(200).json(user);
+        } catch (error) {
+            next(error);
+        }
     },
 
     update: async (req, res, next) => {
